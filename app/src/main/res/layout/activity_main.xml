@@ -13,6 +13,7 @@
         android:layout_marginTop="20dp"
         android:text="@string/button_start"
         android:id="@+id/button_start"
+        android:textSize="20sp"
         />
 
     <Button
@@ -22,6 +23,7 @@
         android:layout_marginTop="5dp"
         android:text="@string/button_kupony"
         android:id="@+id/button_kupony"
+        android:textSize="20sp"
         />
 
     <Button
@@ -31,6 +33,7 @@
         android:layout_marginTop="5dp"
         android:text="@string/button_info"
         android:id="@+id/button_info"
+        android:textSize="20sp"
         />
 
     <Button
@@ -40,6 +43,7 @@
         android:layout_marginTop="5dp"
         android:text="@string/buton_end"
         android:id="@+id/button_end"
+        android:textSize="20sp"
         />
 
 </LinearLayout>

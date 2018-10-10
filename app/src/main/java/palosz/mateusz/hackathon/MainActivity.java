@@ -16,7 +16,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         button1=findViewById(R.id.button_start);
-        custom_fonts=Typeface.createFromAsset(this.getAssets(),"fonts/theboldfont.tff");
-        //button1.setTypeface(Fonts);
+        button2=findViewById(R.id.button_kupony);
+        button3=findViewById(R.id.button_info);
+        button4=findViewById(R.id.button_end);
+        custom_fonts=Typeface.createFromAsset(this.getAssets(),"fonts/theboldfont.ttf");
+        button1.setTypeface(custom_fonts);
+        button2.setTypeface(custom_fonts);
+        button3.setTypeface(custom_fonts);
+        button4.setTypeface(custom_fonts);
     }
 }
