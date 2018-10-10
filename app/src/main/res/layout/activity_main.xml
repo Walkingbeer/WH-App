@@ -6,6 +6,16 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
+    <TextView
+        android:layout_width="320dp"
+        android:layout_height="61dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp"
+        android:text="{HACKATHON}"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="54sp"
+        android:id="@+id/title"/>
     <Button
         android:layout_width="320dp"
         android:layout_height="70dp"
