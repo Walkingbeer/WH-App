@@ -4,4 +4,5 @@
     <string name="button_kupony">MOJE KUPONY</string>
     <string name="button_info">O APLIKACJI</string>
     <string name="buton_end">WYJDŹ</string>
+    <string name="title_activity_mapa">HackathonMap</string>
 </resources>

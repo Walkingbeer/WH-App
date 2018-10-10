@@ -1,6 +1,7 @@
 package palosz.mateusz.hackathon;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
@@ -31,6 +32,8 @@ public class Mapa extends AppCompatActivity {
 
         }else{ // jest lokalizacja
             location_check.setText("Już była lokalizacja!");
+            Intent googleMap = new Intent(this,MapaActivity.class);
+            startActivity(googleMap);
         }
 
 
@@ -47,6 +50,8 @@ public class Mapa extends AppCompatActivity {
                     // permission was granted, yay!
 
                     location_check.setText("Mamy lokalizację!");
+                    Intent googleMap = new Intent(this,MapaActivity.class);
+                    startActivity(googleMap);
 
                 } else {
                     // permission denied, boo! Disable the
