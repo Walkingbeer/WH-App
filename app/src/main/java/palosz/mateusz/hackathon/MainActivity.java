@@ -1,5 +1,6 @@
 package palosz.mateusz.hackathon;
 
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -17,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        button1=findViewById(R.id.button_start);
+        button1=findViewById(R.id.button_start);    // rozpocznij
         button2=findViewById(R.id.button_kupony);
         button3=findViewById(R.id.button_info);
         button4=findViewById(R.id.button_end);
@@ -27,6 +28,15 @@ public class MainActivity extends AppCompatActivity {
         button2.setTypeface(custom_fonts);
         button3.setTypeface(custom_fonts);
         button4.setTypeface(custom_fonts);
+
+        button1.setOnClickListener(new View.OnClickListener() { // rozpocznij
+            @Override
+            public void onClick(View v) {
+                // TODO Auto-generated method stub
+                Intent rozpocznij = new Intent(MainActivity.this,Mapa.class);
+                startActivity(rozpocznij);
+            }
+        });
 
         button4.setOnClickListener(new View.OnClickListener() {
 
@@ -43,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
         title=findViewById(R.id.title);
         title.setTypeface(title_custom_fonts);
         getSupportActionBar().hide();
+
 
     }
 }
