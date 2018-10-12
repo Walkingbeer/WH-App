@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -27,7 +28,8 @@ public class MapaActivity extends FragmentActivity implements OnMapReadyCallback
     protected Context context;
     String lat;
     String provider;
-    protected Double latitude=0.0, longitude=0.0;
+    MarkerOptions myMarker;
+    protected Double latitude = 0.0, longitude = 0.0;
     protected boolean gps_enabled, network_enabled;
 
     @Override
@@ -46,6 +48,7 @@ public class MapaActivity extends FragmentActivity implements OnMapReadyCallback
             // for ActivityCompat#requestPermissions for more details.
             return;
         }
+
         locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, this);
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
@@ -72,7 +75,19 @@ public class MapaActivity extends FragmentActivity implements OnMapReadyCallback
 
         // Add a marker in Sydney and move the camera
         LatLng sydney = new LatLng(latitude, longitude);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
+
+        mMap.moveCamera(CameraUpdateFactory.zoomTo(14));
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return;
+        }
+        mMap.setMyLocationEnabled(true);
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
     }
 
@@ -82,6 +97,10 @@ public class MapaActivity extends FragmentActivity implements OnMapReadyCallback
                 latitude=location.getLatitude();
                 longitude=location.getLongitude();
         LatLng myPosition = new LatLng(latitude, longitude);
+
+
+
+        //mMap.addMarker(new MarkerOptions().position(myPosition).title("My Marker"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(myPosition));
     }
 
