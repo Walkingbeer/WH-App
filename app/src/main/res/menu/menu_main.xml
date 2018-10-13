@@ -1,0 +1,30 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="palosz.mateusz.WH-App.MapaActivity"
+    android:theme="@style/AppTheme">
+    <item
+        android:id="@+id/action_settings"
+        android:orderInCategory="100"
+        android:title="@string/action_settings"
+        android:theme="@style/AppTheme"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action2"
+        android:orderInCategory="100"
+        android:title="@string/action2"
+        android:theme="@style/AppTheme"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action3"
+        android:orderInCategory="100"
+        android:title="@string/action3"
+        android:theme="@style/AppTheme"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action4"
+        android:orderInCategory="100"
+        android:title="@string/action4"
+        android:theme="@style/AppTheme"
+        app:showAsAction="never" />
+</menu>
