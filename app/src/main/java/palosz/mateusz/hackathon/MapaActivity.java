@@ -9,6 +9,7 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
@@ -19,8 +20,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
 import com.google.android.gms.common.GooglePlayServicesRepairableException;
+import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.places.Place;
 import com.google.android.gms.location.places.ui.PlacePicker;
 import com.google.android.gms.maps.CameraUpdate;
@@ -31,7 +34,7 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-public class MapaActivity extends AppCompatActivity implements OnMapReadyCallback, LocationListener, GoogleMap.OnMyLocationButtonClickListener,
+public class MapaActivity extends AppCompatActivity implements OnMapReadyCallback, LocationListener, GoogleApiClient.OnConnectionFailedListener, GoogleApiClient.ConnectionCallbacks, GoogleMap.OnMyLocationButtonClickListener,
         GoogleMap.OnMyLocationClickListener {
 
     private GoogleMap mMap;
@@ -46,6 +49,10 @@ public class MapaActivity extends AppCompatActivity implements OnMapReadyCallbac
     Location locationGPS;
 
     public Toolbar custom_toolbar;
+
+    GoogleApiClient client;
+    //TODO https://www.youtube.com/watch?v=oOVRNxPtfeQ
+    //
 
 
     @Override
@@ -259,9 +266,7 @@ public class MapaActivity extends AppCompatActivity implements OnMapReadyCallbac
     @Override
     public boolean onMyLocationButtonClick() {
         mMap.moveCamera(CameraUpdateFactory.zoomTo(16));
-
-
-        int PLACE_PICKER_REQUEST = 1;
+        /*
         PlacePicker.IntentBuilder builder = new PlacePicker.IntentBuilder();
         try {
             startActivityForResult(builder.build(this), PLACE_PICKER_REQUEST);
@@ -269,7 +274,7 @@ public class MapaActivity extends AppCompatActivity implements OnMapReadyCallbac
             e.printStackTrace();
         } catch (GooglePlayServicesNotAvailableException e) {
             e.printStackTrace();
-        }
+        }*/
 
 
         return false;
@@ -277,6 +282,21 @@ public class MapaActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     @Override
     public void onMyLocationClick(@NonNull Location location) {
+
+    }
+
+    @Override
+    public void onConnected(@Nullable Bundle bundle) {
+
+    }
+
+    @Override
+    public void onConnectionSuspended(int i) {
+
+    }
+
+    @Override
+    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
 
     }
 }
