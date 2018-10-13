@@ -100,7 +100,6 @@ public class MainActivity extends AppCompatActivity {
         //tytul i ukrycie paska aplikacji
         title=findViewById(R.id.title);
         title.setTypeface(title_custom_fonts);
-        getSupportActionBar().hide();
 
 
     }
