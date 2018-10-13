@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // TODO Auto-generated method stub
-                Intent rozpocznij = new Intent(MainActivity.this,Mapa.class);
+                Intent rozpocznij = new Intent(MainActivity.this,PermissionCheck.class);
                 startActivity(rozpocznij);
             }
         });

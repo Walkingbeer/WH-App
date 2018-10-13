@@ -6,6 +6,7 @@ import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
@@ -20,7 +21,8 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-public class MapaActivity extends FragmentActivity implements OnMapReadyCallback, LocationListener {
+public class MapaActivity extends FragmentActivity implements OnMapReadyCallback, LocationListener, GoogleMap.OnMyLocationButtonClickListener,
+        GoogleMap.OnMyLocationClickListener {
 
     private GoogleMap mMap;
     protected LocationManager locationManager;
@@ -31,13 +33,18 @@ public class MapaActivity extends FragmentActivity implements OnMapReadyCallback
     MarkerOptions myMarker;
     protected Double latitude = 0.0, longitude = 0.0;
     protected boolean gps_enabled, network_enabled;
+    Location locationGPS;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mapa);
 
+
+
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             // TODO: Consider calling
             //    ActivityCompat#requestPermissions
@@ -74,9 +81,12 @@ public class MapaActivity extends FragmentActivity implements OnMapReadyCallback
         mMap = googleMap;
 
         // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(latitude, longitude);
 
-        mMap.moveCamera(CameraUpdateFactory.zoomTo(14));
+
+
+
+
+        mMap.moveCamera(CameraUpdateFactory.zoomTo(15));
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             // TODO: Consider calling
             //    ActivityCompat#requestPermissions
@@ -87,8 +97,19 @@ public class MapaActivity extends FragmentActivity implements OnMapReadyCallback
             // for ActivityCompat#requestPermissions for more details.
             return;
         }
+        LatLng start = new LatLng(52.223, 21);
+        if ( !locationManager.isProviderEnabled( LocationManager.GPS_PROVIDER ) ) {
+            locationGPS = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+            start = new LatLng(locationGPS.getLatitude(), locationGPS.getLongitude());
+            mMap.moveCamera(CameraUpdateFactory.zoomTo(14));
+        }
+        mMap.moveCamera(CameraUpdateFactory.zoomTo(13));
         mMap.setMyLocationEnabled(true);
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        mMap.setOnMyLocationButtonClickListener(this);
+        mMap.setOnMyLocationClickListener(this);
+
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(start));
+
     }
 
 
@@ -117,5 +138,16 @@ public class MapaActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onStatusChanged(String provider, int status, Bundle extras) {
         Log.d("Latitude","status");
+    }
+
+    @Override
+    public boolean onMyLocationButtonClick() {
+        mMap.moveCamera(CameraUpdateFactory.zoomTo(16));
+        return false;
+    }
+
+    @Override
+    public void onMyLocationClick(@NonNull Location location) {
+
     }
 }

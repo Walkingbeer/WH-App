@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 import java.util.Objects;
 
-public class Mapa extends AppCompatActivity {
+public class PermissionCheck extends AppCompatActivity {
 
     TextView location_check;
 
